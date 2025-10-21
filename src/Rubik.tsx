@@ -61,7 +61,7 @@ function Rubik() {
   }
 
   // PLL toggles
-  function pllToggleCoords(fcs: Array<Array<boolean>>, row: number, column: number): Array<Array<number>> {
+  function pllToggleCoords(_fcs: Array<Array<boolean>>, row: number, column: number): Array<Array<number>> {
     if (row === 0 || column === 0 || row === 4 || column === 4 || row === 2 && column === 2) {
       return [];
     } else if (row === 2) {
