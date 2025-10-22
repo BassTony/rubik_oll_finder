@@ -875,7 +875,7 @@ const Solution = ({ polyId, solutions, faces }: { id: string, solutions: Array<A
         <h2>Solution for {solution[1]} ({solution[2]}):<br />
           {solution ? solution[3] : `no solutions!`}</h2>
       </div>
-      <SVGPoly id={polyId} faces={[[solution[0]]]} clickFn={(_row: number, _col: number) => () => { }} />
+      <SVGPoly id={polyId} faces={solution[0]} clickFn={(_row: number, _col: number) => () => { }} />
       {/*  <div>
         // map over faces
         {solution?.at(0).map((row, rowIndex) => (
