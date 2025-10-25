@@ -839,9 +839,10 @@ function Rubik() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h1>Rubik's cube OLL finder (for CFOP method)</h1>
+      <h1>Rubik's cube OLL finder</h1>
+      <h3>(for CFOP method)</h3>
       <SVGPoly polyId={"clickable"} faces={faces} clickFn={toggleFace} />
-      <button style={{ width: "300px", fontSize: "20pt" }} onClick={() => setFaces(facesData)}>
+      <button style={{ width: "150px", fontSize: "20pt" }} onClick={() => setFaces(facesData)}>
         RESET
       </button>
 
@@ -961,12 +962,12 @@ const SVGPoly = ({ polyId, faces, clickFn }: { polyId: string, faces: boolean[][
         </g>
       </svg>
 
-
-      Buttons to change the color
+          
+      {/* Buttons to change the color
       <button onClick={() => changeColor('red')}>Red</button>
       <button onClick={() => changeColor('green')}>Green</button>
       <button onClick={() => changeColor('blue')}>Blue</button>
-
+      */}
     </div>
   );
   // }
