@@ -10,8 +10,8 @@ export const SVGPoly = ({ polyId, faces, clickFn, setFacesFn }: {
     strokeWidth: "10px"
   };
   const polyStyleRed = { ...polyStyle, fill: "red" };
-  const polyStyleGreen = { ...polyStyle, fill: "green" };
-  const polyStyleBlue = { ...polyStyle, fill: "blue" };
+  const polyStyleGreen = { ...polyStyle, fill: "#05d905" };
+  const polyStyleBlue = { ...polyStyle, fill: "#0051ff" };
   const polyStyleOrange = { ...polyStyle, fill: "orange" };
   const polyStyleYellow = { ...polyStyle, fill: "yellow" };
   const polyStyleWhite = { ...polyStyle, fill: "white" };

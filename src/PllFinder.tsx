@@ -152,7 +152,8 @@ const PllFinder: React.FC = () => {
       <button style={{ borderColor: '#000000' }} onClick={() => setAddIndex((prevIndex) => (prevIndex + 1) % 7)}>Next color: (current: {addIndex})</button>
 
       {/* <p>{JSON.stringify(PllSolutions)}</p> */}
-      {/* <p>faces: {JSON.stringify(faces)}</p> */}
+      <p>faces:</p>
+      <p>{JSON.stringify(faces)}</p>
       {/* <p>makeRotations(test): <br/>{JSON.stringify(makeRotations(test))}</p> */}
       {/* <p>swapPairs(test): <br/>{JSON.stringify(swapPairs(test))}</p> */}
       <h4>Name:<br />{JSON.stringify(result?.name || "Result name NOT FOUND")}</h4>

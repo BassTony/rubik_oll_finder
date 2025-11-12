@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Rubik />
-      <div style={{ visibility: 'hidden' }}> {/* hide the PllFinder component but keep it mounted */}
+      <div style={{ visibility: 'visible' }}> {/* hide the PllFinder component but keep it mounted */}
         <PllFinder />
       </div>
     </>
