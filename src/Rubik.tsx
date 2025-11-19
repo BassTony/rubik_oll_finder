@@ -78,10 +78,9 @@ function Rubik() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h1>Rubik&apos;s cube OLL finder</h1>
-      <h3>(for CFOP method)</h3>
+      <h2>OLL finder (click on yellow stickers to rotate piece)</h2>
       <SVGPoly polyId={"clickable"} faces={faces} clickFn={ollToggleFace} setFacesFn={setFaces} />
-      <button style={{ width: "150px", fontSize: "20pt" }} onClick={() => setFaces(facesData)}>
+      <button style={{ width: "150px", fontSize: "20pt", borderColor: "gray"}} onClick={() => setFaces(facesData)}>
         RESET
       </button>
 

@@ -1,7 +1,7 @@
-import React from 'react'
-import './App.css'
-import Rubik from './Rubik.tsx'
-import PllFinder from './PllFinder.tsx'
+import React from 'react';
+import './App.css';
+import Rubik from './Rubik.tsx';
+import PllFinder from './PllFinder.tsx';
 
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
@@ -11,13 +11,12 @@ function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <>
+    <div style={{ flex: "center flexDirection column" }}>
+      <h1>Rubik&apos;s cube solution finder (for CFOP method)</h1>
       <Rubik />
-      <div style={{ visibility: 'visible' }}> {/* hide the PllFinder component but keep it mounted */}
-        <PllFinder />
-      </div>
-    </>
-  )
+      <PllFinder />
+    </div>
+  );
 }
 
-export default App
+export default App;

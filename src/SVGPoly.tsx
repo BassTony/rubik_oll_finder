@@ -1,60 +1,78 @@
 import React from 'react';
 
+
+const polyStyle = {
+  fill: "white",
+  stroke: "black",
+  strokeWidth: "10px",
+  // width: "50vmin",
+  // height: "50vmin",
+  maxHeight: "500px",
+};
+const polyStyleRed = { ...polyStyle, fill: "red" };
+const polyStyleGreen = { ...polyStyle, fill: "#05d905" };
+const polyStyleBlue = { ...polyStyle, fill: "#0051ff" };
+const polyStyleOrange = { ...polyStyle, fill: "orange" };
+const polyStyleYellow = { ...polyStyle, fill: "yellow" };
+const polyStyleWhite = { ...polyStyle, fill: "white" };
+const polyStyleInactive = { ...polyStyle, fill: "grey" };
+// const polyStyleActive = polyStyleYellow;
+
+
+const mapNumberToPolyStyle = (n: number) => {
+  switch (n) {
+    case 1: return polyStyleYellow;
+    case 2: return polyStyleRed;
+    case 3: return polyStyleGreen;
+    case 4: return polyStyleOrange;
+    case 5: return polyStyleBlue;
+    case 6: return polyStyleWhite;
+  }
+  return polyStyleInactive;
+};
+
+export const mapNumberToColor = (n: number) => {
+  switch (n) {
+    case 1: return polyStyleYellow.fill;
+    case 2: return polyStyleRed.fill;
+    case 3: return polyStyleGreen.fill;
+    case 4: return polyStyleOrange.fill;
+    case 5: return polyStyleBlue.fill;
+    case 6: return polyStyleWhite.fill;
+  }
+  return polyStyleInactive.fill;
+};
+
+const polyTransforms = [
+  { coords: [0, 1], transform: "matrix(-3.18529e-17,0.520197,-1,-6.12323e-17,1483.03,66.0713)" },
+  { coords: [0, 2], transform: "matrix(-3.18529e-17,0.520197,1,6.12323e-17,381.086,66.0713)" },
+  { coords: [0, 3], transform: "matrix(-3.18529e-17,0.520197,1,6.12323e-17,520.047,66.0713)" },
+  { coords: [1, 0], transform: "matrix(0.520197,0,0,-1,308.195,1240.91)" },
+  { coords: [1, 1], transform: "matrix(1,0,0,1,0,0)" },
+  { coords: [1, 2], transform: "matrix(1,0,0,1,138.962,0)" },
+  { coords: [1, 3], transform: "matrix(1,0,0,1,277.923,0)" },
+  { coords: [1, 4], transform: "matrix(-0.520197,0,0,-1,1694.69,1240.91)" },
+  { coords: [2, 0], transform: "matrix(0.520197,0,0,1,308.195,138.962)" },
+  { coords: [2, 1], transform: "matrix(1,0,0,1,0,138.962)" },
+  { coords: [2, 2], transform: "matrix(1,0,0,1,138.962,138.962)" },
+  { coords: [2, 3], transform: "matrix(1,0,0,1,277.923,138.962)" },
+  { coords: [2, 4], transform: "matrix(-0.520197,0,0,1,1694.69,138.962)" },
+  { coords: [3, 1], transform: "matrix(1,0,0,1,0,277.923)" },
+  { coords: [3, 0], transform: "matrix(0.520197,0,0,1,308.195,277.923)" },
+  { coords: [3, 2], transform: "matrix(1,0,0,1,138.962,277.923)" },
+  { coords: [3, 3], transform: "matrix(1,0,0,1,277.923,277.923)" },
+  { coords: [3, 4], transform: "matrix(-0.520197,0,0,1,1694.69,277.923)" },
+  { coords: [4, 1], transform: "matrix(3.18529e-17,-0.520197,-1,-6.12323e-17,1483.03,1452.56)" },
+  { coords: [4, 2], transform: "matrix(3.18529e-17,-0.520197,1,6.12323e-17,381.086,1452.56)" },
+  { coords: [4, 3], transform: "matrix(3.18529e-17,-0.520197,1,6.12323e-17,520.047,1452.56)" },
+
+];
+
 export const SVGPoly = ({ polyId, faces, clickFn, setFacesFn }: {
   polyId: string, faces: number[][], clickFn: (faces: number[][], row: number, col: number) => number[][]; setFacesFn: React.Dispatch<React.SetStateAction<number[][]>>
   ;
 }) => {
-  const polyStyle = {
-    fill: "white",
-    stroke: "black",
-    strokeWidth: "10px"
-  };
-  const polyStyleRed = { ...polyStyle, fill: "red" };
-  const polyStyleGreen = { ...polyStyle, fill: "#05d905" };
-  const polyStyleBlue = { ...polyStyle, fill: "#0051ff" };
-  const polyStyleOrange = { ...polyStyle, fill: "orange" };
-  const polyStyleYellow = { ...polyStyle, fill: "yellow" };
-  const polyStyleWhite = { ...polyStyle, fill: "white" };
-  const polyStyleInactive = { ...polyStyle, fill: "grey" };
-  // const polyStyleActive = polyStyleYellow;
 
-
-  const polyTransforms = [
-    { coords: [0, 1], transform: "matrix(-3.18529e-17,0.520197,-1,-6.12323e-17,1483.03,66.0713)" },
-    { coords: [0, 2], transform: "matrix(-3.18529e-17,0.520197,1,6.12323e-17,381.086,66.0713)" },
-    { coords: [0, 3], transform: "matrix(-3.18529e-17,0.520197,1,6.12323e-17,520.047,66.0713)" },
-    { coords: [1, 0], transform: "matrix(0.520197,0,0,-1,308.195,1240.91)" },
-    { coords: [1, 1], transform: "matrix(1,0,0,1,0,0)" },
-    { coords: [1, 2], transform: "matrix(1,0,0,1,138.962,0)" },
-    { coords: [1, 3], transform: "matrix(1,0,0,1,277.923,0)" },
-    { coords: [1, 4], transform: "matrix(-0.520197,0,0,-1,1694.69,1240.91)" },
-    { coords: [2, 0], transform: "matrix(0.520197,0,0,1,308.195,138.962)" },
-    { coords: [2, 1], transform: "matrix(1,0,0,1,0,138.962)" },
-    { coords: [2, 2], transform: "matrix(1,0,0,1,138.962,138.962)" },
-    { coords: [2, 3], transform: "matrix(1,0,0,1,277.923,138.962)" },
-    { coords: [2, 4], transform: "matrix(-0.520197,0,0,1,1694.69,138.962)" },
-    { coords: [3, 1], transform: "matrix(1,0,0,1,0,277.923)" },
-    { coords: [3, 0], transform: "matrix(0.520197,0,0,1,308.195,277.923)" },
-    { coords: [3, 2], transform: "matrix(1,0,0,1,138.962,277.923)" },
-    { coords: [3, 3], transform: "matrix(1,0,0,1,277.923,277.923)" },
-    { coords: [3, 4], transform: "matrix(-0.520197,0,0,1,1694.69,277.923)" },
-    { coords: [4, 1], transform: "matrix(3.18529e-17,-0.520197,-1,-6.12323e-17,1483.03,1452.56)" },
-    { coords: [4, 2], transform: "matrix(3.18529e-17,-0.520197,1,6.12323e-17,381.086,1452.56)" },
-    { coords: [4, 3], transform: "matrix(3.18529e-17,-0.520197,1,6.12323e-17,520.047,1452.56)" },
-
-  ];
-
-  const mapNumberToPolyStyle = (n: number) => {
-    switch (n) {
-      case 1: return polyStyleYellow;
-      case 2: return polyStyleRed;
-      case 3: return polyStyleGreen;
-      case 4: return polyStyleOrange;
-      case 5: return polyStyleBlue;
-      case 6: return polyStyleWhite;
-    }
-    return polyStyleInactive;
-  };
 
   if (!faces) return null;
   if (faces.length === 0) return null;
@@ -200,7 +218,7 @@ export const pllToggleFace = (faces: number[][], rowIndex: number, colIndex: num
   //   [4, 5, 1, 2, 3]
   // ];
   newFaces = pllColorOneFace(newFaces, rowIndex, colIndex, colorNum);
-  
+
   return newFaces;
 };
 

@@ -1,7 +1,7 @@
 // PllFinder.tsx
 import React, { useState } from 'react';
 import { PllSolutions, SolutionEntry } from './OllSolutions';
-import SVGPoly, { pllToggleFace } from './SVGPoly';
+import SVGPoly, { mapNumberToColor, pllToggleFace } from './SVGPoly';
 import { Solution } from './Solution';
 
 
@@ -127,11 +127,13 @@ const PllFinder: React.FC = () => {
   const result = findSolutionByShape(lastLayerColors);
 
   return (
-    <div>
+    <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
       <h2>PLL Solution Finder</h2>
+      <h3>Click on the edge stickers to color them. First, color the 3-in-line edge if available. Then, color 'headlights'. Then, color adjacent stickers. The order of colors doesn't change the outcome. This is built for speed entry.</h3>
 
+      {/* TODO: for real speed entry, make side stickers larger and make clicking on them cycle colors. Then reconstitute the building of the pattern detection needle array to hold data about the color in each sub-array. */}
       {/* // Dropdown to select from testPatterns to testShape */}
-      <select onChange={(e) => {
+{/*       <select onChange={(e) => {
         const value = e.target.value;
         if (value) {
           const shape = JSON.parse(value) as number[][];
@@ -144,20 +146,19 @@ const PllFinder: React.FC = () => {
             {shapeTest} - {JSON.stringify(shapeTest)}
           </option>
         ))}
-      </select>
+      </select> */}
 
       {/* TODO: curry pllToggleFace to have a means to return the clicked segment OR the numeric value of */}
       <SVGPoly polyId={"clickable"} faces={faces} clickFn={pllToggleFaceCurried} setFacesFn={setFaces} />
-
-      <button style={{ borderColor: '#000000' }} onClick={() => setAddIndex((prevIndex) => (prevIndex + 1) % 7)}>Next color: (current: {addIndex})</button>
+      <button style={{ borderColor: '#000000', backgroundColor: mapNumberToColor(addIndex+2), fontSize: "2rem", padding: "30px", margin: "20px"}} onClick={() => setAddIndex((prevIndex) => (prevIndex + 1) % 7)}>Next color: (current: {addIndex})</button>
 
       {/* <p>{JSON.stringify(PllSolutions)}</p> */}
-      <p>faces:</p>
-      <p>{JSON.stringify(faces)}</p>
+{/*       <p>faces:</p>
+      <p>{JSON.stringify(faces)}</p> */}
       {/* <p>makeRotations(test): <br/>{JSON.stringify(makeRotations(test))}</p> */}
       {/* <p>swapPairs(test): <br/>{JSON.stringify(swapPairs(test))}</p> */}
-      <h4>Name:<br />{JSON.stringify(result?.name || "Result name NOT FOUND")}</h4>
-      <h4>{JSON.stringify(result?.algorithm || "Algorithm NOT FOUND")}</h4>
+      {/* <h4>Name:<br />{JSON.stringify(result?.name || "Result name NOT FOUND")}</h4> */}
+      {/* <h4>{JSON.stringify(result?.algorithm || "Algorithm NOT FOUND")}</h4> */}
       {/* <h4>RotationResult:<br/>{result || "NOT FOUND"}</h4> */}
 
       {/* <button onClick={() => setLastLayerColors((prevValue) => addNumberToLastLayerColors(prevValue, 1, addIndex))}>Add 1 to first pair</button>
@@ -169,11 +170,11 @@ const PllFinder: React.FC = () => {
       <button onClick={() => console.log(addNumberToTestShape([], 7, 0))}>Add 7 to first pair</button> */}
 
       {/* resetbutton */}
-      <button onClick={resetLastLayerColorsAndIndex}>Reset</button>
+      <button style={{padding: "30px", borderColor: "gray", margin: "10px"}} onClick={resetLastLayerColorsAndIndex}>Reset</button>
 
-      <h4>lastLayerColors: <br />{JSON.stringify(lastLayerColors)}</h4>
+      {/* <h4>lastLayerColors: <br />{JSON.stringify(lastLayerColors)}</h4> */}
 
-      <p>Solution:</p>
+      {/* <p>Solution:</p> */}
       <Solution polyId={"solution"} solutions={[result]} faces={faces} />
       
 
