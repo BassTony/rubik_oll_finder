@@ -4,6 +4,7 @@ import { PllSolutions, SolutionEntry } from './OllSolutions';
 import SVGPoly, { mapNumberToColor, pllToggleFace } from './SVGPoly';
 import { Solution } from './Solution';
 
+const devmode: boolean = true;
 
 const makeRotations = (shape: number[][]): number[][][] => {
   let rotations: number[][][] = [];
@@ -38,14 +39,14 @@ const swapPairs = (shape: number[][]): number[][][] => {
   return [shape, [shape[1], shape[0]]];
 };
 
-const testPatterns = [
+/* const testPatterns = [
   [[1, 3], [10, 11]],
   [[1, 3], [4, 5], [11, 12]],
   [[4, 5], [1, 3], [11, 12]],
   [[7, 8], [4, 6], [2, 3]],
   [[7, 8], [2, 3], [4, 6]],
   [[4, 6], [1, 2]]
-];
+]; */
 
 // function to add one number as input to nested arrays in ascending order, parameter for the index of the nested array to add to
 const addNumberToLastLayerColors = (shape: number[][], numberToAdd: number, index: number): number[][] => {
@@ -119,7 +120,7 @@ const PllFinder: React.FC = () => {
   };
 
 
-  // const test = [[1, 2], [4, 6]];
+  const test = [[1, 2], [4, 6]];
   // const result = PllSolutions.find( pll => {
   //   return JSON.stringify(pll.shape) === JSON.stringify(test);
   // });
@@ -129,7 +130,7 @@ const PllFinder: React.FC = () => {
   return (
     <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
       <h2>PLL Solution Finder</h2>
-      <h3>Click on the edge stickers to color them. First, color the 3-in-line edge if available. Then, color 'headlights'. Then, color adjacent stickers. The order of colors doesn't change the outcome. This is built for speed entry.</h3>
+      <h3>Click on the edge stickers to color them. First, color the 3-in-line edge if available. Then, color &apos;headlights&apos;. Then, color adjacent stickers. The order of colors doesn&apos;t change the outcome. This is built for speed entry.</h3>
 
       {/* TODO: for real speed entry, make side stickers larger and make clicking on them cycle colors. Then reconstitute the building of the pattern detection needle array to hold data about the color in each sub-array. */}
       {/* // Dropdown to select from testPatterns to testShape */}
@@ -155,12 +156,18 @@ const PllFinder: React.FC = () => {
       {/* <p>{JSON.stringify(PllSolutions)}</p> */}
 {/*       <p>faces:</p>
       <p>{JSON.stringify(faces)}</p> */}
-      {/* <p>makeRotations(test): <br/>{JSON.stringify(makeRotations(test))}</p> */}
+      {devmode && <p>makeRotations(test): <br/>{JSON.stringify(makeRotations(test))}</p>}
       {/* <p>swapPairs(test): <br/>{JSON.stringify(swapPairs(test))}</p> */}
       {/* <h4>Name:<br />{JSON.stringify(result?.name || "Result name NOT FOUND")}</h4> */}
       {/* <h4>{JSON.stringify(result?.algorithm || "Algorithm NOT FOUND")}</h4> */}
       {/* <h4>RotationResult:<br/>{result || "NOT FOUND"}</h4> */}
+      
+      {/* ternary jsx expression */}
 
+
+      {devmode && <h4>RotationResult:<br />{JSON.stringify(result) || "NOT FOUND"}</h4>}
+      
+      
       {/* <button onClick={() => setLastLayerColors((prevValue) => addNumberToLastLayerColors(prevValue, 1, addIndex))}>Add 1 to first pair</button>
       <button onClick={() => setLastLayerColors(addNumberToLastLayerColors(lastLayerColors, 3, addIndex))}>Add 3 to first pair</button>
       <button onClick={() => setLastLayerColors(addNumberToLastLayerColors(lastLayerColors, 3, addIndex))}>Add 3 to first pair</button> */}

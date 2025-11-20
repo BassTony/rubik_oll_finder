@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Rubik from './Rubik.tsx';
 import PllFinder from './PllFinder.tsx';
+import PllFinderSwapClicks from './PllFinder_swapColorClicks.tsx';
 
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
@@ -14,7 +15,8 @@ function App() {
     <div style={{ flex: "center flexDirection column" }}>
       <h1>Rubik&apos;s cube solution finder (for CFOP method)</h1>
       <Rubik />
-      <PllFinder />
+      <PllFinderSwapClicks />
+      {/* <PllFinder /> */}
     </div>
   );
 }
