@@ -164,7 +164,7 @@ const PllFinderSwapClicks: React.FC = () => {
     const rotations = makeRotations(shape);
     
     // if devmode is true, log rotations
-    devmode && console.log("Rotations made from shape: " , JSON.stringify(rotations));
+    if (devmode) console.log("Rotations made from shape: " , JSON.stringify(rotations));
 
     // devmode ? console.log("Rotations made from shape: ", rotations) : null;
     let rotationResult = { pattern: [], id: "", name: "NOT FOUND", algorithm: "NOT FOUND", shape: [[1]] };
@@ -206,11 +206,11 @@ const PllFinderSwapClicks: React.FC = () => {
     return 8; // gray for not found
   };
 
-  const logClickedStickerColor = (faces: number[][], rowIndex: number, colIndex: number): number[][] => {
+/*   const logClickedStickerColor = (faces: number[][], rowIndex: number, colIndex: number): number[][] => {
     const colorNum = getColorNumberOfClickedSticker(faces, rowIndex, colIndex);
     console.log(`Clicked sticker at ${rowIndex}, ${colIndex} has color number: ${colorNum}`);
     return faces;
-  };
+  }; */
 
   return (
     <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
