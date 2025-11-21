@@ -1,7 +1,7 @@
 // PllFinder.tsx
 import React, { useState } from 'react';
 import { PllSolutions, SolutionEntry } from './OllSolutions';
-import SVGPoly, { mapNumberToColor, pllToggleFace } from './SVGPoly';
+import SVGPoly, { mapNumberToColorName, pllToggleFace } from './SVGPoly';
 import { Solution } from './Solution';
 
 const devmode: boolean = true;
@@ -151,7 +151,7 @@ const PllFinder: React.FC = () => {
 
       {/* TODO: curry pllToggleFace to have a means to return the clicked segment OR the numeric value of */}
       <SVGPoly polyId={"clickable"} faces={faces} clickFn={pllToggleFaceCurried} setFacesFn={setFaces} />
-      <button style={{ borderColor: '#000000', backgroundColor: mapNumberToColor(addIndex+2), fontSize: "2rem", padding: "30px", margin: "20px"}} onClick={() => setAddIndex((prevIndex) => (prevIndex + 1) % 7)}>Next color: (current: {addIndex})</button>
+      <button style={{ borderColor: '#000000', backgroundColor: mapNumberToColorName(addIndex+2), fontSize: "2rem", padding: "30px", margin: "20px"}} onClick={() => setAddIndex((prevIndex) => (prevIndex + 1) % 7)}>Next color: (current: {addIndex})</button>
 
       {/* <p>{JSON.stringify(PllSolutions)}</p> */}
 {/*       <p>faces:</p>

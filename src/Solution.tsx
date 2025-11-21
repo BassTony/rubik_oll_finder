@@ -2,6 +2,8 @@ import React from 'react';
 import { SolutionEntry } from './OllSolutions';
 import SVGPoly from './SVGPoly';
 
+const devmode = false;
+
 export const Solution = ({ polyId, solutions, faces }: { polyId: string, solutions: SolutionEntry[], faces: number[][]; }) => {
   // rotating an array 90 degrees clockwise
   function rotateArray90(array: Array<Array<number>>): Array<Array<number>> {
@@ -31,19 +33,21 @@ export const Solution = ({ polyId, solutions, faces }: { polyId: string, solutio
     });
   });
 
-  console.log("Found solution: ", solution?.name);
+  if (devmode) {if (solution) console.log("Found solution: ", solution?.name)};
 
   const solution_ = solutions.length === 1 ? solutions[0] : solution;
-  console.log("Rendering solution: ", solution_?.name);
+  // if (solution_ && !(solution_?.name === 'NOT FOUND')) console.log("Rendering solution: ", solution_?.name);
 
-  if (!solution_) return null;
+  if (!solution_ || solution_?.name === 'NOT FOUND') return null;
 
 
   return (
     <>
       <div style={{ flex: 1, textAlign: 'center' }}>
+        {solution_?.algorithm ?
         <h2>Solution for {solution_?.name} ({solution_?.id}):<br />
           {solution_ ? solution_.algorithm : `no solutions!`}</h2>
+        : <h2>No solution found</h2>}
       </div>
       <SVGPoly polyId={polyId} faces={solution_?.pattern} clickFn={(/* _faces: number[][], _row: number, _col: number */) => []} setFacesFn={() => []} />
     </>

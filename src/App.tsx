@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import Rubik from './Rubik.tsx';
-import PllFinder from './PllFinder.tsx';
-import PllFinderSwapClicks from './PllFinder_swapColorClicks.tsx';
+import OLLfinder from './OLLfinder.tsx';
+import PLLfinderCycleColors from './PLLfinderCycleColors.tsx';
 
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
@@ -13,10 +12,13 @@ function App() {
 
   return (
     <div style={{ flex: "center flexDirection column" }}>
-      <h1>Rubik&apos;s cube solution finder (for CFOP method)</h1>
-      <Rubik />
-      <PllFinderSwapClicks />
-      {/* <PllFinder /> */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+        <h1>Rubik&apos;s cube solution finder (for CFOP method)</h1>
+        <OLLfinder />
+        <br /><br />
+        <PLLfinderCycleColors />
+      </div>
     </div>
   );
 }

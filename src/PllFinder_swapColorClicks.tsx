@@ -1,11 +1,11 @@
 // PllFinder.tsx
 import React, { useState } from 'react';
 import { PllSolutions, SolutionEntry } from './OllSolutions';
-import SVGPoly, { mapNumberToColor, pllToggleFace } from './SVGPoly';
+import SVGPoly, { mapNumberToColorName, pllToggleFace } from './SVGPoly';
 import { Solution } from './Solution';
 import { PrettyObject } from './PrettyObject';
 
-const devmode: boolean = true;
+const devmode: boolean = false;
 
 // a type to represent an array that has items that have two fields: the color and the sticner numbers that have that color
 type ColorStickerArray = { color: number; stickers: number[]; };
@@ -159,28 +159,14 @@ const PllFinderSwapClicks: React.FC = () => {
     return pllToggleFace(faces, rowIndex, colIndex, addIndex + 2);
   };
 
-  /*   const findSolutionByShape = (shape: number[][]): SolutionEntry => {
-      const rotations = makeRotations(shape);
-      console.log("Rotations made from shape: " + JSON.stringify(rotations));
-      let rotationResult = { pattern: [], id: "", name: "NOT FOUND", algorithm: "NOT FOUND", shape: [[1]] };
-  
-      // find the matching "shape" in "rotations" and tell which rotation it is
-      for (let i = 0; i < rotations.length; i++) {
-        const rotation = rotations[i];
-        const found = PllSolutions.find(pll => {
-          return JSON.stringify(pll.shape) === JSON.stringify(rotation);
-        });
-        if (found) {
-          rotationResult = found; // 'Found matching PLL for rotation ' + JSON.stringify(found);
-        }
-      }
-  
-      return rotationResult;
-    }; */
 
   const findSolutionByShapeColored = (shape: ColorStickerArray[]): SolutionEntry => {
     const rotations = makeRotations(shape);
-    console.log("Rotations made from shape: ", rotations);
+    
+    // if devmode is true, log rotations
+    devmode && console.log("Rotations made from shape: " , JSON.stringify(rotations));
+
+    // devmode ? console.log("Rotations made from shape: ", rotations) : null;
     let rotationResult = { pattern: [], id: "", name: "NOT FOUND", algorithm: "NOT FOUND", shape: [[1]] };
 
     // find the matching "shape" in "rotations" and tell which rotation it is
@@ -241,7 +227,7 @@ const PllFinderSwapClicks: React.FC = () => {
         setFacesFn={setFaces}
       />
 
-      <button style={{ borderColor: '#000000', backgroundColor: mapNumberToColor(addIndex + 2), fontSize: "2rem", padding: "30px", margin: "20px" }} onClick={() => setAddIndex((prevIndex) => (prevIndex + 1) % 7)}>Next color: (current: {addIndex})</button>
+      <button style={{ borderColor: '#000000', backgroundColor: mapNumberToColorName(addIndex + 2), fontSize: "2rem", padding: "30px", margin: "20px" }} onClick={() => setAddIndex((prevIndex) => (prevIndex + 1) % 7)}>Next color: (current: {addIndex})</button>
 
       {devmode && <h4>Result:<br />{JSON.stringify(lastLayerColors) || "NOT FOUND"}</h4>}
 
